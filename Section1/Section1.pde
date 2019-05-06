@@ -43,12 +43,16 @@ class Visualizer {
     for (int i = 0; i < values.length; i++) {
      //SOMETHING FUNNN
      //fill(abs(values[i])/MAX_VALUE*255,255-(abs(values[i])/MAX_VALUE*255),0);
-      if (values[i] < 0) {
+      if (values[i] > 50) {
         fill(0,255,0);
+      } else if (values[i] > 0) {
+        fill(255,255,0);
+      } else if (values[i] > -50) {
+        fill(255,200,0); // experiment with orange
       } else {
         fill(255,0,0);
       }
-      rect(x+(10*i),y+100,10,values[i]);
+      rect(x+(400 / values.length)*i,y+MAX_VALUE,400/values.length,-values[i]);
     }
 
 
