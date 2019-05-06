@@ -4,6 +4,7 @@ color bg,fg;
 void setup() {
   size(800, 600);
   levels = 1;
+  bg = 225;
 }
 
 /*Create Sierpiski's Gasket (google an image of this)
@@ -19,8 +20,18 @@ void gasket(int levels, float v1x, float v1y, float v2x, float v2y, float v3x, f
 }
 
 void gHelp(int current, int levels, float v1x, float v1y, float v2x, float v2y, float v3x, float v3y) {
-  
-  
+  if (current == 0) {
+    background(bg);
+    fill(fg);
+    triangle(v1x, v1y, v2x, v2y, v3x, v3y);
+  }
+  if (current < levels) {
+    fill(bg);
+    triangle((v1x+v2x) / 2, (v1y+v2y) / 2, (v1x + v3x) / 2, (v1y + v3y) / 2, (v2x + v3x) / 2, (v2y + v3y) /2);
+    gHelp(current + 1, levels, v1x, v1y, (v1x + v2x) / 2, (v1y + v2y) / 2, (v1x + v3x) / 2, (v1y + v3y) / 2);
+    gHelp(current + 1, levels, v2x, v2y, (v1x + v2x) / 2, (v1y + v2y) / 2, (v2x + v3x) / 2, (v2y + v3y) / 2);
+    gHelp(current + 1, levels, v3x, v3y, (v1x + v3x) / 2, (v1y + v3y) / 2, (v2x + v3x) / 2, (v2y + v3y) / 2);
+  }
 }
 
 void draw() { 
